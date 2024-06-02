@@ -9,14 +9,14 @@ import {
   DialogFooter,
   DialogClose,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+} from "../../../../../components/ui/dialog";
+import { Input } from "../../../../../components/ui/input";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../../../../../components/ui/button";
 import EmojiPicker from "emoji-picker-react";
 import GlobalApi from "../../../../server/GlobalApi";
 import { toast } from "sonner";
-const CreateBudget = ({ email }) => {
+const CreateBudget = ({ email, getBudgetList }) => {
   const [emojiIcon, setEmojiIcon] = useState("😀");
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
   const [name, setName] = useState();
@@ -28,6 +28,7 @@ const CreateBudget = ({ email }) => {
       if (resp) {
         toast("add budget successfully");
       }
+      getBudgetList();
     });
   };
   console.log(email);

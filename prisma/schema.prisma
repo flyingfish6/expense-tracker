@@ -14,12 +14,22 @@ datasource db {
 }
 
 
+model Expenses {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255) 
+  amount    String 
+  budgetId  Int 
+  budget Budgets? @relation(fields: [budgetId],references: [id]) 
+  createAt String
+
+}
 model Budgets{
   id Int @id @default(autoincrement())
   name String @db.VarChar(255) 
   amount String 
   icon String?
   createdBy String
+  expenses Expenses[]
 
 
 }
