@@ -6,6 +6,8 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogFooter,
+  DialogClose,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -13,14 +15,19 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import EmojiPicker from "emoji-picker-react";
 import GlobalApi from "../../../../server/GlobalApi";
+import { toast } from "sonner";
 const CreateBudget = ({ email }) => {
   const [emojiIcon, setEmojiIcon] = useState("😀");
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
   const [name, setName] = useState();
   const [amount, setAmount] = useState();
+  console.log(emojiIcon);
+
   const onCreateBudget = () => {
     GlobalApi.CreateBudget(name, amount, emojiIcon, email).then((resp) => {
-      console.log(email);
+      if (resp) {
+        toast("add budget successfully");
+      }
     });
   };
   console.log(email);
@@ -72,16 +79,22 @@ const CreateBudget = ({ email }) => {
                     }}
                   />
                 </div>
-                <Button
-                  disabled={!name || !amount}
-                  onClick={onCreateBudget}
-                  className="mt-5 w-full"
-                >
-                  Create Budget
-                </Button>
               </div>
             </DialogDescription>
           </DialogHeader>
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button
+                disabled={!name || !amount}
+                onClick={() => {
+                  onCreateBudget();
+                }}
+                className="mt-5 w-full"
+              >
+                Create Budget
+              </Button>
+            </DialogClose>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
