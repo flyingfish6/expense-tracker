@@ -8,8 +8,18 @@ const CreateBudget = async (name, amount, icon, createdBy) =>
   );
 
 const GetBudgetSpend = async () => await axios.get("/api/budgetspend");
+
+const GEtBudgetById = async (id) => await axios.get("/api/budgetbyid?id=" + id);
+
+const CreateExpense = async (id, name, amount, createAt) =>
+  await axios.post(
+    `/api/expense?id=${id}&name=${name}&amount=${amount}&createAt=${createAt}`
+  );
+
 export default {
   GetAllBudgets,
   CreateBudget,
   GetBudgetSpend,
+  GEtBudgetById,
+  CreateExpense,
 };

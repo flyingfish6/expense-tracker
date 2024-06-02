@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
 import { redirect, useRouter } from "next/navigation";
