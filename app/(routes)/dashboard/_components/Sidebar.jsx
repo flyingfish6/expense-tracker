@@ -23,7 +23,7 @@ const Sidebar = () => {
       id: 3,
       name: "Expenses",
       icon: ReceiptText,
-      path: "/dashboard/enpenses",
+      path: "/dashboard/expenses",
     },
     {
       id: 4,

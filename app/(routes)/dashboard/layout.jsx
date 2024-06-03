@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }) => {
   const checkBudgets = async () => {
     GlobalApi.GetAllBudgets().then((resp) => {
       setBudgets(resp.data);
-      console.log(resp.data);
+      // console.log(resp.data);
       if (resp.data.length === 0) {
         router.push("/dashboard/budgets");
       }

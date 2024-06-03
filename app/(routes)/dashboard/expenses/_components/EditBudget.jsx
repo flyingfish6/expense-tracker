@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -11,35 +11,48 @@ import {
   DialogTrigger,
 } from "../../../../../components/ui/dialog";
 import { Input } from "../../../../../components/ui/input";
-
-import { Button } from "../../../../../components/ui/button";
 import EmojiPicker from "emoji-picker-react";
+import { useState } from "react";
+import { Button } from "../../../../../components/ui/button";
+import { PenBox } from "lucide-react";
 import GlobalApi from "../../../../server/GlobalApi";
 import { toast } from "sonner";
-const CreateBudget = ({ email, getBudgetList }) => {
+const EditBudget = ({ id, getBudgetById }) => {
   const [emojiIcon, setEmojiIcon] = useState("😀");
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
   const [name, setName] = useState();
   const [amount, setAmount] = useState();
-  // console.log(emojiIcon);
-
-  const onCreateBudget = () => {
-    GlobalApi.CreateBudget(name, amount, emojiIcon, email).then((resp) => {
+  const getBudget = () => {
+    GlobalApi.GEtBudgetById(id).then((resp) => {
+      //   console.log(resp.data);
       if (resp) {
-        toast("add budget successfully");
+        setAmount(resp.data.amount);
+        setName(resp.data.name);
+        setEmojiIcon(resp.data.icon);
       }
-      getBudgetList();
     });
   };
-  // console.log(email);
+  const onUpdateBudget = () => {
+    GlobalApi.UpdateBudget(id, name, amount, emojiIcon).then((resp) => {
+      if (resp) {
+        // console.log(resp.data);
+        getBudgetById();
+        toast("update budget successfully!");
+      }
+    });
+  };
+  useEffect(() => {
+    getBudget();
+    getBudgetById();
+  }, []);
+  // console.log(name);
   return (
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <div className="bg-slate-100 p-10 rounded-md flex flex-col items-center border-dashed cursor-pointer hover:shadow-md">
-            <h2 className="text-3xl">+</h2>
-            <h2>Create New Budget</h2>
-          </div>
+          <Button className="flex  gap-2">
+            <PenBox /> Edit
+          </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -54,6 +67,7 @@ const CreateBudget = ({ email, getBudgetList }) => {
                 </Button>
                 <div className=" mb-2">
                   <EmojiPicker
+                    value={emojiIcon}
                     open={openEmojiPicker}
                     onEmojiClick={(e) => {
                       setEmojiIcon(e.emoji);
@@ -64,6 +78,7 @@ const CreateBudget = ({ email, getBudgetList }) => {
                 <div>
                   <h2 className="text-black font-medium my-1">Budget Name</h2>
                   <Input
+                    value={name}
                     placeholder="bugdet name"
                     onChange={(e) => {
                       setName(e.target.value);
@@ -73,6 +88,7 @@ const CreateBudget = ({ email, getBudgetList }) => {
                 <div>
                   <h2 className="text-black font-medium my-1">Budget Amount</h2>
                   <Input
+                    value={amount}
                     type="number"
                     placeholder="100￥"
                     onChange={(e) => {
@@ -88,11 +104,11 @@ const CreateBudget = ({ email, getBudgetList }) => {
               <Button
                 disabled={!name || !amount}
                 onClick={() => {
-                  onCreateBudget();
+                  onUpdateBudget();
                 }}
                 className="mt-5 w-full"
               >
-                Create Budget
+                Upadte Budget
               </Button>
             </DialogClose>
           </DialogFooter>
@@ -102,4 +118,4 @@ const CreateBudget = ({ email, getBudgetList }) => {
   );
 };
 
-export default CreateBudget;
+export default EditBudget;

@@ -11,7 +11,7 @@ const AddExpense = ({ id }) => {
   const [name, setName] = useState();
   const [amount, setAmount] = useState();
   const createAt = moment(new Date()).format("YYYY-MM-DD");
-  console.log(createAt);
+  // console.log(createAt);
   const router = useRouter();
   const addExpense = () => {
     GlobalApi.CreateExpense(id, name, amount, createAt).then((resp) => {

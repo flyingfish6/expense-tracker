@@ -14,7 +14,7 @@ const BudgetItem = ({ budget }) => {
     }
   }
   const totalSum = calculateSum(budget);
-  console.log(budget);
+  // console.log(budget);
   const present =
     (totalSum / parseInt(budget?.amount)) * 100 > 100
       ? 100
@@ -23,7 +23,7 @@ const BudgetItem = ({ budget }) => {
 
   const dynamicWidth = `${parseInt(present)}%`;
 
-  console.log(dynamicWidth);
+  // console.log(dynamicWidth);
   return (
     <Link href={`/dashboard/expenses/${budget?.id}`}>
       <div className="p-5 border rounded-lg gap-2 hover:shadow-md cursor-pointer">
