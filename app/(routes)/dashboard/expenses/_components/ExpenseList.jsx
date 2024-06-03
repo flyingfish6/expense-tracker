@@ -3,7 +3,11 @@ import { Trash } from "lucide-react";
 import GlobalApi from "../../../../server/GlobalApi";
 import { toast } from "sonner";
 const ExpenseList = ({ expenses, getExpenses, getBudgetById }) => {
+<<<<<<< HEAD
   // console.log(expenses);
+=======
+  console.log(expenses);
+>>>>>>> 6151ac86b38e966d264bfaae4f7010b25286d0b1
   const delExpense = (id) => {
     GlobalApi.DelExpense(id).then((resp) => {
       if (resp) {

@@ -25,8 +25,11 @@ const UpdateBudget = async (id, name, amount, icon) =>
   await axios.patch(
     `/api/budgets?id=${id}&name=${name}&amount=${amount}&icon=${icon}`
   );
+<<<<<<< HEAD
 
 const GetExpensesList = async () => await axios.get("/api/expenses");
+=======
+>>>>>>> 6151ac86b38e966d264bfaae4f7010b25286d0b1
 export default {
   GetAllBudgets,
   CreateBudget,
@@ -37,5 +40,8 @@ export default {
   DelExpense,
   DelBudget,
   UpdateBudget,
+<<<<<<< HEAD
   GetExpensesList,
+=======
+>>>>>>> 6151ac86b38e966d264bfaae4f7010b25286d0b1
 };

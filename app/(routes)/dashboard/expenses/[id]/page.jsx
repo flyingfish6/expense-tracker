@@ -33,7 +33,11 @@ const ExpensesPage = ({ params }) => {
   };
   const getExpenses = () => {
     GlobalApi.GetExpenses(params.id).then((resp) => {
+<<<<<<< HEAD
       // console.log(resp.data);
+=======
+      console.log(resp.data);
+>>>>>>> 6151ac86b38e966d264bfaae4f7010b25286d0b1
       setExpenses(resp.data);
     });
   };

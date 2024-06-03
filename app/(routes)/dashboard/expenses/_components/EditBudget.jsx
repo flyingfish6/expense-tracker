@@ -35,7 +35,11 @@ const EditBudget = ({ id, getBudgetById }) => {
   const onUpdateBudget = () => {
     GlobalApi.UpdateBudget(id, name, amount, emojiIcon).then((resp) => {
       if (resp) {
+<<<<<<< HEAD
         // console.log(resp.data);
+=======
+        console.log(resp.data);
+>>>>>>> 6151ac86b38e966d264bfaae4f7010b25286d0b1
         getBudgetById();
         toast("update budget successfully!");
       }
@@ -45,7 +49,11 @@ const EditBudget = ({ id, getBudgetById }) => {
     getBudget();
     getBudgetById();
   }, []);
+<<<<<<< HEAD
   // console.log(name);
+=======
+  console.log(name);
+>>>>>>> 6151ac86b38e966d264bfaae4f7010b25286d0b1
   return (
     <div>
       <Dialog>
